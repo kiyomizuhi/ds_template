@@ -1,0 +1,12 @@
+FROM jupyter/scipy-notebook:d113a601dbb8
+
+USER root
+
+RUN apt-get update && apt-get install -y python3-dev libpq-dev
+
+RUN pip install --upgrade pip \
+ && pip install ipython-sql \
+ && pip install psycopg2 \
+ && pip install sqlalchemy
+
+CMD jupyter notebook --allow-root --NotebookApp.token="1444" home/jovyan/notebooks
