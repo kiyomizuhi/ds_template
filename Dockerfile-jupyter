@@ -4,9 +4,13 @@ USER root
 
 RUN apt-get update && apt-get install -y python3-dev libpq-dev
 
+WORKDIR /home/jovyan
+
+USER jovyan
+
 RUN pip install --upgrade pip \
  && pip install ipython-sql \
  && pip install psycopg2 \
  && pip install sqlalchemy
 
-CMD jupyter notebook --allow-root --NotebookApp.token="1444" home/jovyan/notebooks
+CMD jupyter notebook --allow-root --NotebookApp.token="1444" .
